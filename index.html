@@ -25,8 +25,10 @@
 
   <!-- CSS -->
   <link href="./css/reset.css" rel="stylesheet" type="text/css" />
-  <!-- <link href="./css/fonts.css" rel="stylesheet" type="text/css" /> -->
+  <link href="./css/fonts.css" rel="stylesheet" type="text/css" />
   <link href="./css/main.css" rel="stylesheet" type="text/css" />
+
+  <!-- Icon -->
 
   <!-- JS -->
   <script>document.documentElement.classList.remove("no-js");</script>
@@ -35,18 +37,50 @@
 </head>
 
 <body>
+  <div id="top"></div>
   <div class="canvas-container"></div>
   <main>
-    <h1 class="logo"><a href="/">Seirakei <br>セイラケイ</a></h1>
-    <!-- <p class="intro type-primary"></p> -->
-    <section class="timeline">
-      <!-- ... -->
+    <h1 class="logo">
+      <a href="#top">
+        Seirakei
+      </a>
+    </h1>
+
+    <p class="intro type-primary">
+      <a href="#top">セイラケイ</a>, a self-taught full stack developer
+    </p>
+
+    <section class="text-container">
+      <article class="text-container-entry" id="projects">
+        <h2 class="text-container-co type-primary"><a href="#projects">Projects</a></h2>
+        <div class="text-container-description">
+          <p>A collection of my projects</p>
+        </div>
+      </article>
+
+      <article class="text-container-entry">
+        <h2 class="text-container-co type-primary">1. Portfolio</h2 class="text-container-co">
+        <div class="text-container-description">
+          <p>A simple portfolio written in pure HTML, CSS and JS.</p>
+          <p>The website also uses technology such as <a href="https://threejs.org">Three.js</a></p>
+          <br />
+          <p><a target="_blank" href="https://github.com/seirakei/seirakei.github.io">View Source	⮞</a></p>
+        </div>
+        </article>
     </section>
+
     <footer>
       <div class="footer-content">
-        <p>You can follow me on <a href="http://twitter.com/__seirakei">Twitter</a>, <a
-            href="https://github.com/seirakei/">GitHub</a>, and <a
-            href="https://soundcloud.com/seirakei">SoundCloud</a>.
+        <p>Follow me on
+        <a target="_blank" href="http://twitter.com/__seirakei">Twitter</a>,
+        <a target="_blank" href="https://www.youtube.com/channel/UC12TSt7ksddPiEIcbah_knQ">YouTube</a>,
+        <a target="_blank" href="https://github.com/seirakei/">GitHub</a>, and
+        <a target="_blank" href="https://soundcloud.com/seirakei">SoundCloud</a>.
+        <br />
+        <br />
+        If you encounter bugs, please open an <a target="_blank" href="https://github.com/seirakei/seirakei.github.io/issues">issue</a>.
+        <br />
+        @セイラケイ - 2021
       </div>
     </footer>
   </main>

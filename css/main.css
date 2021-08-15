@@ -18,10 +18,6 @@ html {
   box-sizing: border-box;
 }
 
-h1 {
-  visibility: visible !important;
-}
-
 .canvas-container {
   position: fixed;
   top: 0;
@@ -50,24 +46,24 @@ main {
   grid-template-areas:
     ". header header ."
     ". intro . ."
-    ". timeline timeline ."
+    ". text-container text-container ."
     "footer footer footer footer";
 }
 
 .logo {
   margin: var(--v-space) 0 0 0;
-  opacity: 0;
+  opacity: 1;
   /* will-change: opacity; */
 
   grid-area: header;
   align-self: end;
-  visibility: visible !important;
 }
 
 .no-js .logo {
   opacity: 1;
 }
 
+/*
 .loaded .logo {
   animation-name: fadeIn;
   animation-duration: 2s;
@@ -75,6 +71,7 @@ main {
   animation-timing-function: ease-out;
   animation-fill-mode: forwards;
 }
+*/
 
 .logo a {
   font-size: 6.5rem;
@@ -91,7 +88,7 @@ main {
 
 .intro {
   /* z-index: 2; */
-  opacity: 0;
+  opacity: 1;
   will-change: opacity;
   margin: var(--v-space) 0;
 
@@ -110,11 +107,11 @@ main {
   animation-fill-mode: forwards;
 }
 
-.timeline {
-  grid-area: timeline;
+.text-container {
+  grid-area: text-container;
 }
 
-.timeline-entry {
+.text-container-entry {
   z-index: 2;
   background: var(--c-tertiary);
   backdrop-filter: saturate(180%) blur(40px);
@@ -129,30 +126,30 @@ main {
   grid-template-areas: ". co description .";
 }
 
-.timeline-entry:first-child {
+.text-container-entry:first-child {
   border-top-left-radius: var(--border-radius);
   border-top-right-radius: var(--border-radius);
 }
 
-.timeline-entry:last-child {
+.text-container-entry:last-child {
   border-bottom-left-radius: var(--border-radius);
   border-bottom-right-radius: var(--border-radius);
 }
 
-.timeline-co {
+.text-container-co {
   margin: calc(var(--v-space) * 0.5) 0 0;
   grid-area: co;
 }
 
-.timeline-co a {
+.text-container-co a {
   color: var(--c-primary);
 }
 
-.timeline-time {
+.text-container-time {
   display: block;
 }
 
-.timeline-description {
+.text-container-description {
   margin: calc(var(--v-space) * 0.5) 0 0;
   font-weight: normal;
   font-size: 1.5rem;
@@ -202,7 +199,7 @@ footer .footer-content {
   main {
     grid-template-columns: 1fr 10fr 0fr 1fr;
   }
-  .timeline-entry {
+  .text-container-entry {
     grid-template-columns: 1fr 5fr 5fr 1fr;
     grid-template-rows: 1fr auto;
     grid-template-areas:

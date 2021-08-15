@@ -1,4 +1,4 @@
-import { fragment, vertex } from "./shader.js";
+import { vertex, fragment } from "./shader.js";
 
 !(function (e) {
   var t = {};

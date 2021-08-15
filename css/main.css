@@ -1,0 +1,222 @@
+:root {
+  --c-primary: rgb(209, 197, 173);
+  --c-secondary: rgba(200, 200, 200, 0.85);
+  --c-tertiary: hsl(88, 25%, 11%, 0.5);
+  --v-space: 6rem;
+  --canvas-height: 80vh;
+  --f-weight: 600;
+  --border-radius: min(10vw, var(--v-space));
+}
+
+html {
+  font-size: 16px;
+  line-height: 1.5;
+  background: rgb(15, 15, 16);
+  /* font-family: -apple-system, BlinkMacSystemFont, "Helvetica Neue", sans-serif; */
+  font-family: "Avenir Next", Avenir, "Helvetica Neue", sans-serif;
+  color: var(--c-secondary);
+  box-sizing: border-box;
+}
+
+h1 {
+  visibility: visible !important;
+}
+
+.canvas-container {
+  position: fixed;
+  top: 0;
+  right: 0;
+  left: 0;
+  height: 100vh;
+  z-index: 1;
+  pointer-events: none;
+}
+
+a {
+  color: var(--c-primary);
+  /* text-decoration: none; */
+  font-weight: var(--f-weight);
+}
+
+a:hover {
+  text-decoration: none;
+}
+
+main {
+  /* visibility: hidden; */
+  display: grid;
+  grid-template-columns: 1fr 6fr 4fr 1fr;
+  grid-template-rows: 1fr 3fr auto;
+  grid-template-areas:
+    ". header header ."
+    ". intro . ."
+    ". timeline timeline ."
+    "footer footer footer footer";
+}
+
+.logo {
+  margin: var(--v-space) 0 0 0;
+  opacity: 0;
+  /* will-change: opacity; */
+
+  grid-area: header;
+  align-self: end;
+  visibility: visible !important;
+}
+
+.no-js .logo {
+  opacity: 1;
+}
+
+.loaded .logo {
+  animation-name: fadeIn;
+  animation-duration: 2s;
+  animation-delay: 0.25s;
+  animation-timing-function: ease-out;
+  animation-fill-mode: forwards;
+}
+
+.logo a {
+  font-size: 6.5rem;
+  font-weight: 700;
+  line-height: 0.8;
+  text-decoration: none;
+}
+
+.type-primary {
+  font-weight: var(--f-weight);
+  font-size: 3rem;
+  line-height: 1.4;
+}
+
+.intro {
+  /* z-index: 2; */
+  opacity: 0;
+  will-change: opacity;
+  margin: var(--v-space) 0;
+
+  grid-area: intro;
+  align-self: end;
+}
+.no-js .intro {
+  opacity: 1;
+}
+
+.loaded .intro {
+  animation-name: fadeIn;
+  animation-duration: 2.2s;
+  animation-delay: 0.5s;
+  animation-timing-function: ease-out;
+  animation-fill-mode: forwards;
+}
+
+.timeline {
+  grid-area: timeline;
+}
+
+.timeline-entry {
+  z-index: 2;
+  background: var(--c-tertiary);
+  backdrop-filter: saturate(180%) blur(40px);
+  -webkit-backdrop-filter: saturate(180%) blur(40px);
+
+  position: relative;
+  padding: calc(var(--v-space) / 2) 0;
+
+  display: grid;
+  grid-template-columns: 1fr 5fr 5fr 1fr;
+  grid-template-rows: auto;
+  grid-template-areas: ". co description .";
+}
+
+.timeline-entry:first-child {
+  border-top-left-radius: var(--border-radius);
+  border-top-right-radius: var(--border-radius);
+}
+
+.timeline-entry:last-child {
+  border-bottom-left-radius: var(--border-radius);
+  border-bottom-right-radius: var(--border-radius);
+}
+
+.timeline-co {
+  margin: calc(var(--v-space) * 0.5) 0 0;
+  grid-area: co;
+}
+
+.timeline-co a {
+  color: var(--c-primary);
+}
+
+.timeline-time {
+  display: block;
+}
+
+.timeline-description {
+  margin: calc(var(--v-space) * 0.5) 0 0;
+  font-weight: normal;
+  font-size: 1.5rem;
+  line-height: 1.4;
+
+  grid-area: description;
+}
+
+footer {
+  grid-area: footer;
+
+  display: grid;
+  grid-template-columns: 1fr 5fr 5fr 1fr;
+  grid-template-rows: auto;
+  grid-template-areas: ". p p .";
+}
+
+footer .footer-content {
+  z-index: 1;
+  padding: var(--v-space) 0;
+  font-weight: var(--f-weight);
+  font-size: 1.5rem;
+  line-height: 1.4;
+
+  grid-area: p;
+}
+
+@media only screen and (max-width: 834px) {
+  :root {
+    --v-space: 4rem;
+  }
+  html {
+    font-size: 14px;
+  }
+  main {
+    grid-template-columns: 1fr 8fr 2fr 1fr;
+  }
+}
+
+@media only screen and (max-width: 736px) {
+  :root {
+    --v-space: 3rem;
+  }
+  html {
+    font-size: 12px;
+  }
+  main {
+    grid-template-columns: 1fr 10fr 0fr 1fr;
+  }
+  .timeline-entry {
+    grid-template-columns: 1fr 5fr 5fr 1fr;
+    grid-template-rows: 1fr auto;
+    grid-template-areas:
+      ". hr hr ."
+      ". co co ."
+      ". description description .";
+  }
+}
+
+@keyframes fadeIn {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}

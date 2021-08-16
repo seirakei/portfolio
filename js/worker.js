@@ -1,4 +1,5 @@
 importScripts("./cannon.js");
+
 function random(min, max) {
   if (!min) {
     min = 1;
@@ -41,10 +42,10 @@ let moveBody = new CANNON.Body({
   position: new CANNON.Vec3(0, 0, 0),
   fixedRotation: true,
 });
+
 world.addBody(moveBody);
 
 function resetBody(body) {
-
   body.position.set(
     moveBody.position.x + random(-1, 1),
     moveBody.position.y + random(-1, 1),
@@ -60,6 +61,7 @@ function resetBody(body) {
     new CANNON.Vec3(30, 30, 30),
     new CANNON.Vec3(random(-30, 30), random(-30, 30), random(-30, 30))
   );
+
   body.shapes[0].radius = 0.001;
   return body;
 }
@@ -78,7 +80,6 @@ self.onmessage = function (e) {
   let quaternions = e.data.quaternions;
   let scales = e.data.scales;
 
-
   moveBody.position.set(e.data.mouse.x, e.data.mouse.y, e.data.mouse.z);
 
   if (e.data.create) {
@@ -92,7 +93,6 @@ self.onmessage = function (e) {
     });
 
     body = this.resetBody(body);
-
 
     spheres.push(body);
     scales[4 * i + 0] = 0.001; // scale
@@ -152,6 +152,10 @@ self.onmessage = function (e) {
       quaternions: quaternions,
       scales: scales,
     },
-    [positions.buffer, quaternions.buffer, scales.buffer]
+    [
+      positions.buffer,
+      quaternions.buffer,
+      scales.buffer
+    ]
   );
 };

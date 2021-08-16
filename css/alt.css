@@ -1,7 +1,8 @@
 :root {
   --c-primary: rgb(209, 197, 173);
-  --c-secondary: rgba(200, 200, 200, 0.85);
-  --c-tertiary: hsl(88, 25%, 11%, 0.5);
+  --c-secondary: rgba(200,200,200,.85);
+  --c-tertiary: hsl(88, 25%, 11%, .5);
+  
   --v-space: 6rem;
   --canvas-height: 80vh;
   --f-weight: 600;
@@ -44,32 +45,29 @@ main {
   grid-template-columns: 1fr 6fr 4fr 1fr;
   grid-template-rows: 1fr 3fr auto;
   grid-template-areas:
-    ". header header ."
-    ". intro . ."
-    ". text-container text-container ."
-    "footer footer footer footer";
+  ". header header ."
+  ". intro . ."
+  ". timeline timeline ."
+  "footer footer footer footer";
 }
 
 .logo {
   margin: var(--v-space) 0 0 0;
-  opacity: 1;
-  /* will-change: opacity; */
-
+  opacity: 0;
+  will-change: opacity;
+  
   grid-area: header;
   align-self: end;
 }
+.no-js .logo { opacity: 1; }
 
-.no-js .logo {
-  opacity: 1;
-}
-
-/* .loaded .logo {
+.loaded .logo {
   animation-name: fadeIn;
   animation-duration: 2s;
-  animation-delay: 0.25s;
+  animation-delay: .25s;
   animation-timing-function: ease-out;
   animation-fill-mode: forwards;
-} */
+}
 
 .logo a {
   font-size: 6.5rem;
@@ -86,83 +84,83 @@ main {
 
 .intro {
   /* z-index: 2; */
-  opacity: 1;
+  opacity: 0;
   will-change: opacity;
   margin: var(--v-space) 0;
-
+  
   grid-area: intro;
   align-self: end;
 }
-.no-js .intro {
-  opacity: 1;
-}
+.no-js .intro { opacity: 1; }
 
 .loaded .intro {
   animation-name: fadeIn;
   animation-duration: 2.2s;
-  animation-delay: 0.5s;
+  animation-delay: .5s;
   animation-timing-function: ease-out;
   animation-fill-mode: forwards;
 }
 
-.text-container {
-  grid-area: text-container;
+.timeline {
+  grid-area: timeline;
 }
 
-.text-container-entry {
+.timeline-entry {
   z-index: 2;
   background: var(--c-tertiary);
   backdrop-filter: saturate(180%) blur(40px);
   -webkit-backdrop-filter: saturate(180%) blur(40px);
-
+  
   position: relative;
-  padding: calc(var(--v-space) / 2) 0;
-
+  padding: calc(var(--v-space)/2) 0;
+  
   display: grid;
   grid-template-columns: 1fr 5fr 5fr 1fr;
   grid-template-rows: auto;
-  grid-template-areas: ". co description .";
+  grid-template-areas:
+  ". co description .";
 }
 
-.text-container-entry:first-child {
+.timeline-entry:first-child {
   border-top-left-radius: var(--border-radius);
   border-top-right-radius: var(--border-radius);
 }
 
-.text-container-entry:last-child {
+.timeline-entry:last-child {
   border-bottom-left-radius: var(--border-radius);
   border-bottom-right-radius: var(--border-radius);
 }
 
-.text-container-co {
-  margin: calc(var(--v-space) * 0.5) 0 0;
+.timeline-co {
+  margin: calc(var(--v-space) * .5) 0 0;
   grid-area: co;
 }
 
-.text-container-co a {
+.timeline-co a {
   color: var(--c-primary);
 }
 
-.text-container-time {
+.timeline-time {
   display: block;
 }
 
-.text-container-description {
-  margin: calc(var(--v-space) * 0.5) 0 0;
+.timeline-description {
+  margin: calc(var(--v-space) * .5) 0 0;
   font-weight: normal;
   font-size: 1.5rem;
   line-height: 1.4;
-
+  
   grid-area: description;
 }
 
 footer {
   grid-area: footer;
-
+  
   display: grid;
   grid-template-columns: 1fr 5fr 5fr 1fr;
   grid-template-rows: auto;
-  grid-template-areas: ". p p .";
+  grid-template-areas:
+  ". p p ."
 }
 
 footer .footer-content {
@@ -171,36 +169,36 @@ footer .footer-content {
   font-weight: var(--f-weight);
   font-size: 1.5rem;
   line-height: 1.4;
-
+  
   grid-area: p;
 }
 
 @media only screen and (max-width: 834px) {
   :root {
-    --v-space: 4rem;
+      --v-space: 4rem;
   }
   html {
-    font-size: 14px;
+      font-size: 14px;
   }
   main {
-    grid-template-columns: 1fr 8fr 2fr 1fr;
+      grid-template-columns: 1fr 8fr 2fr 1fr;
   }
 }
 
 @media only screen and (max-width: 736px) {
   :root {
-    --v-space: 3rem;
+      --v-space: 3rem;
   }
   html {
-    font-size: 12px;
+      font-size: 12px;
   }
   main {
-    grid-template-columns: 1fr 10fr 0fr 1fr;
+      grid-template-columns: 1fr 10fr 0fr 1fr;
   }
-  .text-container-entry {
-    grid-template-columns: 1fr 5fr 5fr 1fr;
-    grid-template-rows: 1fr auto;
-    grid-template-areas:
+  .timeline-entry {
+      grid-template-columns: 1fr 5fr 5fr 1fr;
+      grid-template-rows: 1fr auto;
+      grid-template-areas:
       ". hr hr ."
       ". co co ."
       ". description description .";
@@ -208,10 +206,6 @@ footer .footer-content {
 }
 
 @keyframes fadeIn {
-  0% {
-    opacity: 0;
-  }
-  100% {
-    opacity: 1;
-  }
+  0% { opacity: 0; }
+  100% { opacity: 1; }
 }

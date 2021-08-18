@@ -1,30 +1,3 @@
-#include <common>
-#include <packing>
-#include <color_pars_fragment>
-#include <map_pars_fragment>
-#include <uv2_pars_fragment>
-#include <uv_pars_fragment>
-#include <bsdfs>
-#include <cube_uv_reflection_fragment>
-#include <envmap_common_pars_fragment>
-#include <envmap_physical_pars_fragment>
-#include <lights_pars_begin>
-#include <lights_physical_pars_fragment>
-#include <shadowmap_pars_fragment>
-#include <normalmap_pars_fragment>
-#include <metalnessmap_pars_fragment>
-#include <roughnessmap_pars_fragment>
-#include <roughnessmap_fragment>
-#include <metalnessmap_fragment>
-#include <normal_fragment_begin>
-#include <normal_fragment_maps>
-#include <lights_physical_fragment>
-#include <lights_fragment_begin>
-#include <lights_fragment_maps>
-#include <lights_fragment_end>
-#include <tonemapping_fragment>
-#include <encodings_fragment>
-
 #extension GL_EXT_shader_texture_lod : enable
 #extension GL_OES_standard_derivatives : enable
 
@@ -61,6 +34,37 @@ varying vec3 vPosition;
   #endif
 #endif
 
+#include <common>
+#include <packing>
+// <dithering_pars_fragment>
+
+#include <color_pars_fragment>
+#include <map_pars_fragment>
+#include <uv2_pars_fragment>
+#include <uv_pars_fragment>
+
+//< alphamap_pars_fragment>
+// <lightmap_pars_fragment>
+// <emissivemap_pars_fragment>
+
+#include <bsdfs>
+#include <cube_uv_reflection_fragment>
+#include <envmap_common_pars_fragment>
+#include <envmap_physical_pars_fragment>
+// <fog_pars_fragment>
+
+#include <lights_pars_begin>
+#include <lights_physical_pars_fragment>
+#include <shadowmap_pars_fragment>
+// <bumpmap_pars_fragment>
+
+#include <normalmap_pars_fragment>
+// <clearcoat_normalmap_pars_fragment>
+
+#include <metalnessmap_pars_fragment>
+#include <roughnessmap_pars_fragment>
+
+
 float map(float value, float min1, float max1, float min2, float max2) {
   return min2 + (value - min1) * (max2 - min2) / (max1 - min1);
 }
@@ -84,6 +88,30 @@ void main() {
   ReflectedLight reflectedLight = ReflectedLight(vec3(0.0), vec3(0.0), vec3(0.0), vec3(0.0));
   vec3 totalEmissiveRadiance = emissive + c * clamp(vScale, .35, 1.);
 
+  // <map_fragment>
+  // <color_fragment>
+  // <alphamap_fragment>
+  // <alphatest_fragment>
+
+  #include <roughnessmap_fragment>
+  #include <metalnessmap_fragment>
+  #include <normal_fragment_begin>
+  #include <normal_fragment_maps>
+  // <clearcoat_normal_fragment_begin>
+  // <clearcoat_normal_fragment_maps>
+  // <emissivemap_fragment>
+
+  #include <lights_physical_fragment>
+  #include <lights_fragment_begin>
+  #include <lights_fragment_maps>
+  #include <lights_fragment_end>
+
   vec3 outgoingLight = reflectedLight.directDiffuse + reflectedLight.indirectDiffuse + reflectedLight.directSpecular + reflectedLight.indirectSpecular + totalEmissiveRadiance;
   gl_FragColor = vec4(outgoingLight, diffuseColor.a);
+
+  #include <tonemapping_fragment>
+  #include <encodings_fragment>
+  // <fog_fragment>
+  // <premultiplied_alpha_fragment>
+  // <dithering_fragment>
 }

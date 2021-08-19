@@ -1,8 +1,8 @@
 # Portfolio
 A simple portfolio written in pure HTML, CSS and JS.
-The website also uses technology such as [Three.js](https://threejs.org).
+The website also uses technology such as [WebGL](https://www.khronos.org/webgl/).
 
-> [**Live Demo**](https://seirakei.github.io).
+> [**Live Website**](https://seirakei.github.io/portfolio).
 
 # License
 This project is licensed under the MIT License.

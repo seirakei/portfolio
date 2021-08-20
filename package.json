@@ -1,5 +1,0 @@
-{
-  "scripts": {
-    "serve": "http-server -p 8000 \"./\""
-  }
-}
